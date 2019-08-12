@@ -8,10 +8,21 @@
       </div>
       <div class="panel-body">
         <div class="pull-left">
-          <input type="number" class="form-control" placeholder="Quantity" />
+          <input
+            type="number"
+            v-model.number="quantity"
+            class="form-control"
+            placeholder="Quantity"
+          />
         </div>
         <div class="pull-right">
-          <button class="btn btn-success">Buy</button>
+          <button
+            @click="buyStock"
+            :disabled="quantity <= 0"
+            class="btn btn-success"
+          >
+            Buy
+          </button>
         </div>
       </div>
     </div>
@@ -19,6 +30,22 @@
 </template>
 <script>
 export default {
-  props: ["stock"]
+  props: ["stock"],
+  methods: {
+    buyStock() {
+      const order = {
+        stockId: this.stock.id,
+        stockPrice: this.stock.price,
+        quantity: this.quantity
+      };
+      console.log(order);
+      this.quantity = 0;
+    }
+  },
+  data() {
+    return {
+      quantity: 0
+    };
+  }
 };
 </script>
