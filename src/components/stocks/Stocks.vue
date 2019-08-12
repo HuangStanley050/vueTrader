@@ -1,5 +1,5 @@
 <template>
-  <div><Stock v-for="stock in stocks"> </Stock></div>
+  <div><Stock :stock="stock" v-for="stock in stocks"> </Stock></div>
 </template>
 
 <script>
